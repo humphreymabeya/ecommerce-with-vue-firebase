@@ -75,11 +75,8 @@ export default {
   methods:{
     login(){
       fb.auth().signInWithEmailAndPassword(this.email, this.password)
-      .then(() => {  
-        // $('#login').modal('hide')
-        $('#login').show().on('shown', function() { 
-            $("#login").modal('hide')
-        });
+      .then(() => {
+        $("login").modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();
         this.$router.replace('admin');  
       })
       .catch(function(error) {
@@ -93,11 +90,13 @@ export default {
         }
         console.log(error);
       });
+
     },
     register(){
       fb.auth().createUserWithEmailAndPassword(this.email, this.password)
       .then((user) => {
-        $("#login").modal('hide');                  
+        // $("#login").modal('hide')
+        $("login").modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();
         db.collection("profiles").doc(user.user.uid).set({
           name: this.name
         })
@@ -106,7 +105,7 @@ export default {
         })
         .catch(function(error) {
           console.error("Error writing document: ", error);
-        });
+        });                 
         this.$router.replace('admin');
       })
       .catch(function(error) {
