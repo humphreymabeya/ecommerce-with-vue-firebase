@@ -43,7 +43,8 @@ export default {
   methods:{
 
 	checkout(){
-	  $('#miniCart').modal('hide')
+	//   $('#miniCart').modal('hide')
+	  $("#miniCart").modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();
 	  this.$router.push('/checkout')  
 	}
 

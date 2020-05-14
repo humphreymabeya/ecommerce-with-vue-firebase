@@ -76,7 +76,7 @@ export default {
     login(){
       fb.auth().signInWithEmailAndPassword(this.email, this.password)
       .then(() => {
-        $("login").modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();
+        $("#login").modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();
         this.$router.replace('admin');  
       })
       .catch(function(error) {
@@ -96,7 +96,7 @@ export default {
       fb.auth().createUserWithEmailAndPassword(this.email, this.password)
       .then((user) => {
         // $("#login").modal('hide')
-        $("login").modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();
+        $("#login").modal('hide');$('body').removeClass('modal-open');$('.modal-backdrop').remove();
         db.collection("profiles").doc(user.user.uid).set({
           name: this.name
         })
